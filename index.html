@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Pass It Forward Lacrosse collects outgrown lacrosse gear and gets it, free, to Washington youth and high school programs that can't afford to outfit their players.">
+<meta property="og:title" content="Pass It Forward Lacrosse">
+<meta property="og:description" content="Outgrown gear in. New players out.">
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+<title>Pass It Forward Lacrosse</title>
+<link rel="icon" type="image/png" href="/badge.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a field-line page — left-aligned, wide rules like yard lines, one orange arrow accent, content column ~68ch */
+:root{
+  --bg:#f5f7fa;            /* cool white */
+  --bg2:#e6edf5;           /* pale blue line */
+  --fg:#0f1f3d;            /* navy ink */
+  --fg2:#4a5a74;
+  --line:#c9d6e6;
+  --field:#13294b;         /* navy */
+  --field-ink:#f5f7fa;
+  --accent:#7bafd4;        /* carolina blue */
+  --accent-ink:#0f1f3d;
+  --ok:#2d7a3f;
+  --warn:#b4541a;
+  --display:"Oswald","Arial Narrow",Impact,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c1628;--bg2:#142238;--fg:#e9eff7;--fg2:#a3b3c9;--line:#27384f;
+    --field:#1d3a66;--field-ink:#e9eff7;--accent:#8fc3e8;--accent-ink:#0c1628;--ok:#5fc274;--warn:#f0995a;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c1628;--bg2:#142238;--fg:#e9eff7;--fg2:#a3b3c9;--line:#27384f;
+  --field:#1d3a66;--field-ink:#e9eff7;--accent:#8fc3e8;--accent-ink:#0c1628;--ok:#5fc274;--warn:#f0995a;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05;letter-spacing:.005em}
+h1{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:700;text-transform:uppercase}
+h2{font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:600;text-transform:uppercase}
+h3{font-size:1.25rem;font-weight:600}
+p{margin:0}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.eyebrow{font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:600;color:var(--accent)}
+.measure{max-width:66ch}
+.muted{color:var(--fg2)}
+section{padding-block:clamp(48px,8vw,96px);border-top:3px solid var(--line)}
+section.tight{padding-block:clamp(32px,5vw,56px)}
+
+/* nav */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:3px solid var(--fg)}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1.05rem;letter-spacing:.02em}
+.brand img{width:44px;height:44px;flex:none;border-radius:50%}
+.herobadge{width:120px;height:120px;margin-bottom:18px;display:block}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px 18px;flex-wrap:wrap;font-size:.92rem;font-weight:500}
+nav a{text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{border-bottom-color:var(--accent);outline:none}
+nav a.cta{background:var(--accent);color:var(--accent-ink);padding:6px 12px;border:0;font-weight:600}
+
+/* hero */
+.hero{border-top:0;padding-block:clamp(40px,7vw,88px);background:
+  linear-gradient(var(--line),var(--line)) 0 100%/100% 3px no-repeat,
+  repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--bg2) calc(10% - 1px) 10%);}
+.hero .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.hero p.lede{font-size:1.25rem;max-width:34ch;margin-top:20px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:1rem;padding:12px 20px;text-decoration:none;border:2px solid var(--fg);background:transparent;color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.field{background:var(--field);border-color:var(--field);color:var(--field-ink)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn:disabled{opacity:.5;cursor:default}
+.kit{border:3px solid var(--fg);padding:20px;background:var(--bg2)}
+.kit h3{text-transform:uppercase;font-size:.95rem;letter-spacing:.1em;color:var(--fg2);margin-bottom:12px}
+.kit table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.98rem}
+.kit td{padding:7px 0;border-top:1px solid var(--line)}
+.kit td:last-child{text-align:right;font-family:var(--display);font-size:1.1rem}
+.kit tr.total td{border-top:3px solid var(--fg);font-weight:600}
+.kit tr.total td:last-child{color:var(--accent);font-size:1.35rem;white-space:nowrap}
+.kit .note{font-size:.85rem;color:var(--fg2);margin-top:10px}
+
+/* story */
+.story .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.story p+p{margin-top:16px}
+.subhead{text-transform:uppercase;margin-top:32px;margin-bottom:10px;font-size:1.1rem;letter-spacing:.04em}
+.beliefs{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:.95rem}
+.beliefs li{padding:10px 0 10px 16px;border-left:3px solid var(--accent)}
+.beliefs b{display:block;font-family:var(--display);text-transform:uppercase;letter-spacing:.03em;font-size:1rem}
+.pull{font-family:var(--display);font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:500;line-height:1.15;border-left:6px solid var(--accent);padding-left:20px;text-transform:uppercase}
+
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.founder{border-left:6px solid var(--accent);padding:4px 0 4px 18px}
+.founder h3{font-size:1.6rem;text-transform:uppercase}
+.fmeta{color:var(--fg2);font-size:.92rem;margin-top:4px}
+.fstory{max-width:66ch;margin-top:32px}
+.fstory p+p{margin-top:16px}
+.fsig{font-family:var(--display);font-size:1.2rem;color:var(--fg2)}
+.fphotos{display:flex;gap:8px;margin-bottom:14px}
+.fphotos img{width:96px;height:120px;object-fit:cover;border:2px solid var(--fg);display:block;flex:none}
+
+/* how */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:3px solid var(--fg);margin-top:32px}
+.step{padding:24px;border-right:3px solid var(--fg)}
+.step:last-child{border-right:0}
+.step .n{font-family:var(--display);font-size:3rem;font-weight:700;color:var(--accent);line-height:1}
+.step h3{margin:10px 0 8px;text-transform:uppercase}
+.step p{color:var(--fg2);font-size:.98rem}
+
+/* take table */
+.take{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:28px}
+.take .col h3{text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;padding-bottom:8px;border-bottom:3px solid var(--fg);margin-bottom:12px}
+.take ul{list-style:none;padding:0;margin:0}
+.take li{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:baseline}
+.take li b{font-weight:600;min-width:12ch}
+.take li span{color:var(--fg2);font-size:.95rem}
+.tag{display:inline-block;font-family:var(--display);text-transform:uppercase;font-size:.75rem;letter-spacing:.08em;padding:2px 8px;border:2px solid currentColor}
+.tag.ok{color:var(--ok)}.tag.no{color:var(--warn)}
+.helmet{margin-top:28px;padding:20px 24px;background:var(--field);color:var(--field-ink);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.helmet .big{font-family:var(--display);font-size:2.6rem;font-weight:700;line-height:1}
+.helmet p{font-size:.98rem}
+
+/* bins */
+.bins table{width:100%;border-collapse:collapse;margin-top:24px;font-size:.98rem}
+.bins th{text-align:left;font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:.85rem;padding:10px 8px;border-bottom:3px solid var(--fg)}
+.bins td{padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.bins .tablewrap{overflow-x:auto}
+.callout{border:3px dashed var(--accent);padding:16px 20px;margin-top:20px;font-size:.98rem}
+
+.clublist{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 24px}
+.clublist li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.clublist li b{font-weight:600}
+.clublist li span:first-of-type{grid-column:1;color:var(--fg2);font-size:.88rem}
+.clublist .tag{grid-column:2;grid-row:1/3;align-self:center}
+.tag.tbd{color:var(--fg2);border-style:dashed}
+/* form */
+.apply .grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
+form{display:grid;gap:18px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:12px}
+legend{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:.9rem;font-weight:600;padding:0;margin-bottom:6px;border-bottom:3px solid var(--fg);width:100%;padding-bottom:6px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.f{display:grid;gap:5px;font-size:.9rem;font-weight:500}
+label.f span.hint{font-weight:400;color:var(--fg2);font-size:.82rem}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{
+  font:inherit;font-size:1rem;padding:10px 12px;border:2px solid var(--line);background:var(--bg);color:var(--fg);width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{min-height:96px;resize:vertical}
+.sizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.sizes label.f{font-size:.85rem}
+.sizes input{padding:8px 10px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.check input{margin-top:4px;accent-color:var(--accent)}
+.radios{display:flex;gap:16px;flex-wrap:wrap;font-size:.95rem}
+.radios label{display:flex;gap:6px;align-items:center}
+.radios input{accent-color:var(--accent)}
+.status{padding:14px 16px;border:3px solid var(--fg);font-size:.95rem;display:grid;gap:10px}
+.status.ok{border-color:var(--ok)}
+.status pre{white-space:pre-wrap;font:inherit;font-size:.9rem;background:var(--bg2);padding:12px;margin:0;max-height:260px;overflow:auto}
+.status .addr{font-family:var(--display);font-size:1.15rem;letter-spacing:.02em;user-select:all}
+.err{color:var(--warn);font-size:.9rem}
+.apply aside h3{text-transform:uppercase;margin-top:28px;margin-bottom:8px}
+.apply aside ol{padding-left:20px;margin:8px 0 0;display:grid;gap:8px}
+.apply aside p+p{margin-top:12px}
+
+/* three-up */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}
+.card{border-top:6px solid var(--accent);padding-top:16px}
+.card h3{text-transform:uppercase;margin-bottom:8px}
+.card p{color:var(--fg2);font-size:.98rem}
+.card .btn{margin-top:16px;font-size:.9rem;padding:10px 16px}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:600;font-family:var(--display);font-size:1.1rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--accent);font-weight:700}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--fg2);max-width:66ch}
+
+/* footer */
+footer{border-top:3px solid var(--fg);padding-block:36px;font-size:.9rem;color:var(--fg2)}
+footer .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+footer b{color:var(--fg);font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;display:block;margin-bottom:6px}
+footer .addr{user-select:all;color:var(--fg)}
+
+.copybtn{font:inherit;font-size:.85rem;padding:6px 12px;border:2px solid var(--fg);background:transparent;color:var(--fg);cursor:pointer;font-family:var(--display);text-transform:uppercase;letter-spacing:.06em}
+
+@media (max-width:820px){
+  .hero .grid,.story .grid,.take,.founders,.apply .grid,footer .wrap{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:3px solid var(--fg)}
+  .step:last-child{border-bottom:0}
+  .three{grid-template-columns:1fr}
+  .clublist{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .helmet{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Pass It Forward Lacrosse home">
+      <img src="/badge.png" alt="" width="44" height="44">
+      <span>Pass It Forward Lacrosse</span>
+    </a>
+    <nav aria-label="Site">
+      <ul>
+        <li><a href="#story">Our story</a></li>
+        <li><a href="#founders">Founders</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#take">What we take</a></li>
+        <li><a href="#bins">Drop-off bins</a></li>
+        <li><a href="#clubs">Clubs</a></li>
+        <li><a href="#help">Help out</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="cta" href="#apply">Get gear!</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <img class="herobadge" src="/badge.png" alt="Pass It Forward Lacrosse badge" width="120" height="120">
+      <p class="eyebrow">Washington State · 501(c)(3) pending</p>
+      <h1>Outgrown gear in.<br>New players out.</h1>
+      <p class="lede">We collect lacrosse equipment that's sitting in garages and get it to youth and high school programs that can't afford to outfit their players.</p>
+      <div class="actions">
+        <a class="btn primary" href="#bins">Find a drop-off bin</a>
+        <a class="btn field" href="#apply">Apply for gear</a>
+      </div>
+    </div>
+    <div class="kit" aria-label="What it costs to outfit one player">
+      <h3>One player, new, before the first practice</h3>
+      <table>
+        <tr><td>Helmet</td><td>$130–450</td></tr>
+        <tr><td>Shoulder pads</td><td>$30–185</td></tr>
+        <tr><td>Arm pads</td><td>$30–140</td></tr>
+        <tr><td>Gloves</td><td>$40–220</td></tr>
+        <tr><td>Stick</td><td>$40–350+</td></tr>
+        <tr class="total"><td>Per kid</td><td>$270–1,345+</td></tr>
+      </table>
+      <p class="note">New retail price ranges, 2026. Most of that gear is used two seasons and sits for ten. We're fixing the ten.</p>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="story">
+  <div class="wrap">
+    <p class="eyebrow">Who we are</p>
+    <h2>A gear closet for the whole state</h2>
+    <div class="grid" style="margin-top:28px">
+      <div>
+        <p>Lacrosse is the most equipment-heavy sport a kid can walk into. Before a single practice, a family is looking at a helmet, shoulder pads, arm pads, gloves, and a stick. For a lot of families that number is the reason their kid never shows up. For a lot of coaches it's the reason the program can't grow, or can't start at all.</p>
+        <p>Meanwhile the gear exists. Every spring, thousands of helmets and pads come off kids who outgrew them, and most of it goes into a garage and stays there. Pass It Forward Lacrosse is the connection between those two facts.</p>
+        <p>And it's not just outgrown gear. Anyone who's been around club lacrosse knows the cycle: a new helmet drops, a teammate shows up with the new gloves, the stick that was fine last season gets replaced because this year's head throws a little better. Club players and their families upgrade constantly, and the gear they set aside is usually a season or two old, barely worn, and better than what a lot of programs can put on a kid new. A helmet that got replaced because it wasn't the latest model is still a great helmet. Those upgrades are our supply.</p>
+        <p>We put bins at partner clubs at the end of every season. Volunteers sort and inspect everything that comes in. Helmets get checked against their NOCSAE certification and sent to a licensed reconditioner when they need it. Then complete sets go out to programs that apply, free, so a coach can put a kid on the field who otherwise wouldn't be there.</p>
+        <p>We're starting in the Puget Sound corridor, where the clubs and the high school programs are, and building the model so it can run as a local chapter in any lacrosse town on the West Coast and eventually anywhere in the country. Washington first. Then wherever there's a coach with a bin and a roster that needs it.</p>
+      </div>
+      <div>
+        <p class="pull">The gear you upgraded out of is the gear someone else is waiting on.</p>
+        <p class="muted" style="margin-top:28px">We serve programs, not individuals. A coach or athletic director applies for their team, receives gear in bulk, and handles fitting and distribution. No family ever has to fill out a form or explain anything to us. The coach already knows who needs it.</p>
+        <p class="muted" style="margin-top:16px">Pass It Forward Lacrosse is a Washington nonprofit corporation. Our application for 501(c)(3) status is in progress; donations are tax-deductible once the IRS determination is received, retroactive to our incorporation date.</p>
+        <h3 class="subhead">What we hold ourselves to</h3>
+        <ul class="beliefs">
+          <li><b>Every helmet is one we'd wear.</b> Checked, dated, recertified when it needs it, recycled when it doesn't pass. No exceptions, no favors.</li>
+          <li><b>The coach is the expert.</b> They know who needs gear. We don't ask families to prove anything.</li>
+          <li><b>Gear stays local.</b> What's donated in Puget Sound goes to Puget Sound programs first. Shipping is for real gaps, not for show.</li>
+          <li><b>Donors get credit, players get privacy.</b> We name the clubs that fill bins. We never name the kid who got the helmet.</li>
+          <li><b>One number matters.</b> How many players are on the field in donated gear. That's what we report, every season.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders">
+  <div class="wrap">
+    <p class="eyebrow">Who started this</p>
+    <h2>From Jace and Hayden</h2>
+    <div class="founders">
+      <div class="founder">
+        <div class="fphotos">
+          <img src="/photos/jace-3.jpg" alt="Jace as a young kid in Bellevue Lacrosse gear" loading="lazy">
+          <img src="/photos/jace-2.jpg" alt="Jace in a Bellevue uniform cradling the ball in the rain" loading="lazy">
+          <img src="/photos/jace-1.jpg" alt="Jace winding up to shoot in a club game" loading="lazy">
+        </div>
+        <h3>Jace Bacon</h3>
+        <p class="fmeta">Co-founder · Class of 2028 · Bellevue Lacrosse, Seattle Starz</p>
+      </div>
+      <div class="founder">
+        <h3>Hayden Ritchie</h3>
+        <p class="fmeta">Co-founder · Class of 2028 · Bellevue Lacrosse, Cityside</p>
+      </div>
+    </div>
+    <div class="fstory">
+      <p>We've been playing lacrosse since before we can really remember. Youth leagues, then Bellevue Lacrosse, then club ball (Jace with Seattle Starz, Hayden with Cityside), summers full of tournaments, the whole thing. We're juniors now, and lacrosse has been the constant through all of it: the friendships, the road trips, the sore Sundays, the one more rep after practice when nobody was watching.</p>
+      <p>Somewhere along the way we noticed something that bugged us. Every season, club families like ours upgrade. A new helmet comes out, somebody gets the new gloves, and the stuff from last year goes in a bin in the garage. Perfectly good gear. Gear that still has a lot of seasons left in it. And at the same time, there are kids a few miles away who want to play and can't, because a helmet costs more than their family can put toward a sport, and whole programs that can't grow because the rack is empty.</p>
+      <p>That didn't sit right with us. We know what lacrosse has given us, and we think any kid who wants that should get the chance. So we started Pass It Forward Lacrosse: a way for the gear that's already out there to find the players who are waiting on it.</p>
+      <p>We're still in school. We still have practice. But we're the ones sorting the bins, talking to coaches, and making sure every helmet that goes out is one we'd wear ourselves. If you see us at a drive, say hi. We'd love to hear where you got your first stick.</p>
+      <p class="fsig">— Jace &amp; Hayden</p>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Garage to field in three steps</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Donate</h3>
+        <p>Drop outgrown or unused gear in a bin at a partner club during the last weeks of the season. Helmets, pads, gloves, sticks, goalie gear, goggles. You get a receipt by email.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Sort &amp; inspect</h3>
+        <p>Volunteers log every item by category, size, and condition. Helmets are checked for a current NOCSAE label; those that need it go to a licensed reconditioner. Anything unsafe is recycled, never passed on.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Distribute</h3>
+        <p>Coaches apply with roster size and what they're missing. Two weeks after each drive closes, we fill requests in a batch and deliver or ship complete sets to the program.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="take">
+  <div class="wrap">
+    <p class="eyebrow">What we take</p>
+    <h2>If it fit a lacrosse player once, it fits in the bin</h2>
+    <p class="measure muted" style="margin-top:12px">We accept everything and sort it ourselves. You don't need to judge the condition; we do that. Here's what happens to each category.</p>
+    <div class="take">
+      <div class="col">
+        <h3>Yes, bring it</h3>
+        <ul>
+          <li><b>Helmets</b><span>Any age, any condition. Checked for NOCSAE date; reconditioned or recycled as needed.</span></li>
+          <li><b>Shoulder, arm &amp;<br>rib pads</b><span>Straps intact, foam not crushed. We check for mold.</span></li>
+          <li><b>Gloves</b><span>Palms intact, thumb protection present.</span></li>
+          <li><b>Sticks</b><span>Heads, shafts, or complete sticks. Men's and women's. We re-pair shafts with donated heads.</span></li>
+          <li><b>Goalie gear</b><span>Chest protectors, throat guards, goalie pants, goalie sticks. The hardest thing for a new program to afford.</span></li>
+          <li><b>Goggles</b><span>Girls' lacrosse eyewear, ASTM-stamped, lens unscratched.</span></li>
+          <li><b>Jerseys, pinnies, balls, cones</b><span>Programs want these too.</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Please don't</h3>
+        <ul>
+          <li><b>Mouthguards</b><span>We never reuse them. We buy new ones and include one with every helmet that goes out.</span></li>
+          <li><b>Cleats</b><span>Sizing is too specific to match well. Pass them to a teammate or a local shoe drive.</span></li>
+          <li><b>Non-lacrosse gear</b><span>Football, hockey, and baseball equipment goes to the sport's own programs; we can point you to one.</span></li>
+          <li><b>Cash in the bin</b><span>Use the donate button instead; it pays for helmet recertification and shipping.</span></li>
+        </ul>
+        <div class="helmet">
+          <div class="big">LIDS</div>
+          <p>Every helmet gets the same check: shell, padding, chin strap, NOCSAE label, manufacture date. Within date and sound, it goes out. Borderline, it goes to a NOCSAE-licensed reconditioner and comes back drop-tested and stickered. Cracked, stripped, or too old, it's recycled. No helmet leaves us that a referee or athletic director could reject.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bins" class="bins">
+  <div class="wrap">
+    <p class="eyebrow">Drop-off bins</p>
+    <h2>Where to bring it</h2>
+    <p class="measure muted" style="margin-top:12px">Bins go up at partner clubs for the last three weeks of each season. Spring field season bins open in May; fall bins open in October. The first drive covers four areas of the Puget Sound corridor; the host club for each is named here as it signs on.</p>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Club / site</th><th>City</th><th>Where exactly</th><th>Open</th></tr></thead>
+      <tbody id="binrows">
+        <tr><td><b>Eastside</b> <span class="muted">partner club TBA</span></td><td>Bellevue / Kirkland / Issaquah</td><td>Club field house, announced when confirmed</td><td>Spring 2027 drive · May 15 – Jun 15</td></tr>
+        <tr><td><b>Seattle</b> <span class="muted">partner club TBA</span></td><td>Seattle</td><td>Club field house, announced when confirmed</td><td>Spring 2027 drive · May 15 – Jun 15</td></tr>
+        <tr><td><b>South Sound</b> <span class="muted">partner club TBA</span></td><td>Tacoma / Gig Harbor / Olympia</td><td>Club field house, announced when confirmed</td><td>Spring 2027 drive · May 15 – Jun 15</td></tr>
+        <tr><td><b>North</b> <span class="muted">partner club TBA</span></td><td>Everett / Snohomish</td><td>Club field house, announced when confirmed</td><td>Spring 2027 drive · May 15 – Jun 15</td></tr>
+        <tr><td><b>Sort &amp; pickup day</b></td><td>Central (Kent / Renton area)</td><td>Storage site, address sent to applicants</td><td>Sat Jun 19, 2027 · programs pick up Sat Aug 21</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="callout">
+      <b>Run a club or a program?</b> Hosting a bin is one bin in your field house for three weeks. We handle pickup, sorting, and receipts, and we post about your club as a partner. Email us and we'll bring the bin.
+    </div>
+  </div>
+</section>
+
+<section id="clubs" class="clubs">
+  <div class="wrap">
+    <p class="eyebrow">Club partners</p>
+    <h2>Programs we want to work with</h2>
+    <p class="measure muted" style="margin-top:12px">These are the Washington select and travel club programs on our list for drop-off bins, gear swaps, and end-of-season drives. None are confirmed yet; "TBD" means we're reaching out or haven't talked yet. If you run one of these and want in, email us. If your club isn't here, email us anyway.</p>
+    <ul class="clublist">
+        <li><b>Seattle Starz</b><span>Seattle / Eastside</span><span class="tag tbd">TBD</span></li>
+        <li><b>CitySide Lacrosse</b><span>Greater Seattle</span><span class="tag tbd">TBD</span></li>
+        <li><b>Vand'al Lacrosse Club</b><span>Puget Sound</span><span class="tag tbd">TBD</span></li>
+        <li><b>Arc Lacrosse Club</b><span>Puget Sound</span><span class="tag tbd">TBD</span></li>
+        <li><b>South Sound Lacrosse</b><span>Tacoma</span><span class="tag tbd">TBD</span></li>
+        <li><b>253 Lacrosse</b><span>Tacoma / Pierce County</span><span class="tag tbd">TBD</span></li>
+        <li><b>Chaos Rising</b><span>Puget Sound</span><span class="tag tbd">TBD</span></li>
+        <li><b>Puget Sound Select</b><span>Puget Sound</span><span class="tag tbd">TBD</span></li>
+        <li><b>Tenacity Project</b><span>Seattle</span><span class="tag tbd">TBD</span></li>
+        <li><b>Legit Lacrosse</b><span>Bellevue / Kirkland / Mill Creek</span><span class="tag tbd">TBD</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="apply" class="apply">
+  <div class="wrap">
+    <p class="eyebrow">For coaches and athletic directors</p>
+    <h2>Apply for gear</h2>
+    <div class="grid" style="margin-top:28px">
+      <aside>
+        <p>Two minutes. Tell us about your program and what you're short. We fill requests in a batch about two weeks after each collection drive closes, so you'll hear from us with a pickup date or a tracking number, not a form letter.</p>
+        <h3>Who's eligible</h3>
+        <p class="muted">Any youth or high school lacrosse program (school team, club, rec league, or a new program trying to start) where the coach or AD can say that lack of gear is keeping players off the field. No family income verification. You vouch for your program; we take your word and talk to you.</p>
+        <h3>Who goes first</h3>
+        <ol class="muted">
+          <li>Programs starting up or about to fold for lack of gear</li>
+          <li>Title I schools and rec programs with no booster club</li>
+          <li>Established programs with one specific gap (a goalie set, girls' goggles) keeping a kid benched</li>
+        </ol>
+        <h3>What happens next</h3>
+        <ol class="muted">
+          <li>You get a confirmation email within a day.</li>
+          <li>After the drive closes, we sort for two weeks and match requests to inventory.</li>
+          <li>You get a pickup date or a tracking number, with a packing slip listing every item and its helmet dates.</li>
+          <li>Your coach fits and hands out the gear. We never contact players or families.</li>
+        </ol>
+        <h3>What we'll ask after</h3>
+        <p class="muted">Thirty days after delivery, one question: how many players are on the field in donated gear? That number is what gets the next program outfitted.</p>
+        <h3>Not in Washington?</h3>
+        <p class="muted">Apply anyway. We can't ship outside the state yet, but every out-of-area application tells us where the next chapter should be.</p>
+      </aside>
+
+      <form id="coachform" novalidate>
+        <fieldset>
+          <legend>Program</legend>
+          <div class="row">
+            <label class="f">Program name<input type="text" id="prog" name="prog" required autocomplete="organization"></label>
+            <label class="f">City<input type="text" id="city" name="city" required autocomplete="address-level2"></label>
+          </div>
+          <div class="row">
+            <label class="f">League or school district<input type="text" id="league" name="league"></label>
+            <label class="f">Program type
+              <select id="ptype" name="ptype">
+                <option>High school (varsity/JV)</option>
+                <option>Youth club</option>
+                <option>Rec / parks league</option>
+                <option>New program (first season)</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label class="f">Age groups served <span class="hint">e.g. U10–U14, or 9–12</span><input type="text" id="ages" name="ages"></label>
+            <label class="f">Teams
+              <select id="gender" name="gender">
+                <option>Boys'</option>
+                <option>Girls'</option>
+                <option>Both</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Contact</legend>
+          <div class="row">
+            <label class="f">Your name<input type="text" id="cname" name="cname" required autocomplete="name"></label>
+            <label class="f">Role <span class="hint">head coach, AD, club director</span><input type="text" id="role" name="role" required></label>
+          </div>
+          <div class="row">
+            <label class="f">Email<input type="email" id="email" name="email" required autocomplete="email"></label>
+            <label class="f">Phone<input type="tel" id="phone" name="phone" autocomplete="tel"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Need</legend>
+          <div class="row">
+            <label class="f">Current roster size<input type="number" id="roster" name="roster" min="1" required></label>
+            <label class="f">Players waiting on gear<input type="number" id="waiting" name="waiting" min="0" required></label>
+          </div>
+          <label class="f">Annual equipment budget
+            <select id="budget" name="budget">
+              <option>$0 — no equipment budget</option>
+              <option>Under $1,000</option>
+              <option>$1,000 – $5,000</option>
+              <option>Over $5,000</option>
+            </select>
+          </label>
+          <p class="muted" style="font-size:.9rem">How many of each do you need? Leave blank for none.</p>
+          <div class="sizes">
+            <label class="f">Helmets — Youth/S<input type="number" min="0" id="h_s" name="h_s"></label>
+            <label class="f">Helmets — M<input type="number" min="0" id="h_m" name="h_m"></label>
+            <label class="f">Helmets — L/XL<input type="number" min="0" id="h_l" name="h_l"></label>
+            <label class="f">Shoulder pads<input type="number" min="0" id="shoulder" name="shoulder"></label>
+            <label class="f">Arm pads<input type="number" min="0" id="arm" name="arm"></label>
+            <label class="f">Gloves<input type="number" min="0" id="gloves" name="gloves"></label>
+            <label class="f">Sticks — attack/mid<input type="number" min="0" id="sticks" name="sticks"></label>
+            <label class="f">Sticks — long pole<input type="number" min="0" id="poles" name="poles"></label>
+            <label class="f">Goalie sets<input type="number" min="0" id="goalie" name="goalie"></label>
+            <label class="f">Girls' goggles<input type="number" min="0" id="goggles" name="goggles"></label>
+          </div>
+          <label class="f">Sizes and anything else we should know <span class="hint">glove sizes, pad sizes, women's vs. men's heads</span><textarea id="notes" name="notes"></textarea></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Logistics</legend>
+          <label class="f">Who will fit and distribute the gear to players?<input type="text" id="fitter" name="fitter" placeholder="e.g. head coach at first practice"></label>
+          <div class="radios" role="group" aria-label="Pickup or shipping">
+            <label><input type="radio" name="ship" value="Pickup in Seattle/Tacoma area" checked>Pickup in Seattle/Tacoma area</label>
+            <label><input type="radio" name="ship" value="Need it shipped">Need it shipped</label>
+          </div>
+          <label class="f">One sentence: what would this gear change for your program?<textarea id="why" name="why" required></textarea></label>
+          <label class="check"><input type="checkbox" id="okname" name="okname">It's fine to name our program publicly if we receive gear (we never name individual players or families).</label>
+          <label class="check"><input type="checkbox" id="attest" name="attest" required>I'm a coach, athletic director, or program administrator, and lack of equipment is keeping players off the field in our program.</label>
+        </fieldset>
+
+        <div>
+          <button class="btn primary" type="submit" id="submitbtn">Send application</button>
+          <p class="err" id="formerr" hidden></p>
+        </div>
+        <div class="status" id="formstatus" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="help">
+  <div class="wrap">
+    <p class="eyebrow">Help out</p>
+    <h2>Three ways to pass it forward</h2>
+    <div class="three">
+      <div class="card">
+        <h3>Donate gear</h3>
+        <p>Find a bin, drop a bag. During a drive we post what we're short on; between drives, hold it for us or email to arrange a pickup for a large lot.</p>
+        <a class="btn" href="#bins">Bin locations</a>
+      </div>
+      <div class="card">
+        <h3>Donate dollars</h3>
+        <p>Gear is free; moving it isn't. $40 recertifies one helmet. $75 ships a program's order. $2,000 covers a season of helmet reconditioning for every program we serve.</p>
+        <a class="btn" href="#contact">Ask about giving</a>
+      </div>
+      <div class="card">
+        <h3>Volunteer</h3>
+        <p>Sort days are one Saturday after each drive and need six people, one of whom knows helmets. High schoolers earn service hours. Coaches who can judge condition are gold.</p>
+        <a class="btn" href="#contact">Sign up to sort</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="tight">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2>Things people ask</h2>
+    <div style="margin-top:20px">
+      <details><summary>Is a used helmet safe?</summary><p>A helmet with a current NOCSAE certification label, no cracks, and all its padding is what every league already requires. We don't pass on anything else. Helmets that are sound but out of date go to a reconditioner licensed by NOCSAE, who drop-tests them and applies a dated recertification label. Anything that fails is recycled.</p></details>
+      <details><summary>Is my donation tax-deductible?</summary><p>Our 501(c)(3) application is in progress. Once the IRS issues our determination letter, donations are deductible retroactive to our incorporation date. You'll receive a receipt for every donation either way; the IRS asks the donor to value non-cash gifts, so we describe what you gave and leave the value to you.</p></details>
+      <details><summary>Can an individual player or family apply?</summary><p>Not directly. We work through programs so no family has to fill out a form or explain their situation. Ask your coach to apply for the team; they can request gear for however many players need it.</p></details>
+      <details><summary>Do you only serve Washington?</summary><p>For now. We're building the model around the Puget Sound corridor first, then adding chapters in Spokane, Oregon, and down the West Coast. If you're a coach outside Washington, apply anyway; it tells us where to go next.</p></details>
+      <details><summary>What about girls' lacrosse gear?</summary><p>It's its own category for us, not an afterthought. Goggles, women's heads, and goalie gear for girls' programs are among the most-requested items we get. If you have them, we need them.</p></details>
+      <details><summary>Can my club host a bin?</summary><p>Yes, and that's how most gear reaches us. One bin in your field house for the last three weeks of the season; we handle the rest and credit your club publicly. Email us.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <img src="/badge.png" alt="" width="72" height="72" style="display:block;margin-bottom:10px">
+      <b>Pass It Forward Lacrosse</b>
+      A Washington nonprofit corporation. 501(c)(3) determination pending.<br>Bellevue, WA
+    </div>
+    <div>
+      <b>Contact</b>
+      <span class="addr" id="emailaddr">passitforwardlax@gmail.com</span>
+      <div style="margin-top:8px"><button class="copybtn" type="button" id="copyemail">Copy email</button></div>
+    </div>
+    <div>
+      <b>Follow</b>
+      @passitforwardlax on Instagram, Facebook, and TikTok<br>#passitforwardlax
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const EMAIL = 'passitforwardlax@gmail.com';
+
+  function copyText(txt, btn){
+    const done = () => { const o = btn.textContent; btn.textContent = 'Copied'; setTimeout(()=>btn.textContent=o, 1600); };
+    try {
+      navigator.clipboard.writeText(txt).then(done).catch(()=>fallback());
+    } catch(e){ fallback(); }
+    function fallback(){
+      const el = $('emailaddr'); if (!el) return;
+      const r = document.createRange(); r.selectNodeContents(el);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+  }
+  $('copyemail').addEventListener('click', ()=>copyText(EMAIL, $('copyemail')));
+
+  // Coach application
+  const form = $('coachform');
+  const need = ['h_s','h_m','h_l','shoulder','arm','gloves','sticks','poles','goalie','goggles'];
+  const needLabel = {h_s:'Helmets Youth/S',h_m:'Helmets M',h_l:'Helmets L/XL',shoulder:'Shoulder pads',arm:'Arm pads',gloves:'Gloves',sticks:'Sticks attack/mid',poles:'Long poles',goalie:'Goalie sets',goggles:"Girls' goggles"};
+
+  function collect(){
+    const v = id => ($(id).value||'').trim();
+    const n = {}; need.forEach(k=>{ const x = parseInt(v(k),10); if (x>0) n[k]=x; });
+    return {
+      program:v('prog'), city:v('city'), league:v('league'), type:v('ptype'), ages:v('ages'), teams:v('gender'),
+      contact:v('cname'), role:v('role'), email:v('email'), phone:v('phone'),
+      roster:parseInt(v('roster'),10)||0, waiting:parseInt(v('waiting'),10)||0, budget:v('budget'),
+      need:n, notes:v('notes'), fitter:v('fitter'),
+      ship:(form.querySelector('input[name=ship]:checked')||{}).value||'',
+      why:v('why'), okToName:$('okname').checked,
+      submittedAt:new Date().toISOString(), status:'new'
+    };
+  }
+  function toText(a){
+    const lines = [
+      'PASS IT FORWARD LACROSSE — GEAR APPLICATION',
+      '',
+      'Program: '+a.program+' ('+a.type+')',
+      'City: '+a.city+(a.league?'  ·  League/district: '+a.league:''),
+      'Ages: '+(a.ages||'—')+'  ·  Teams: '+a.teams,
+      '',
+      'Contact: '+a.contact+', '+a.role,
+      'Email: '+a.email+(a.phone?'  ·  Phone: '+a.phone:''),
+      '',
+      'Roster: '+a.roster+'  ·  Waiting on gear: '+a.waiting,
+      'Equipment budget: '+a.budget,
+      'Need:'
+    ];
+    const keys = Object.keys(a.need);
+    if (!keys.length) lines.push('  (none listed)');
+    keys.forEach(k=>lines.push('  '+needLabel[k]+': '+a.need[k]));
+    if (a.notes) lines.push('Sizes/notes: '+a.notes);
+    lines.push('', 'Fitting/distribution: '+(a.fitter||'—'), 'Delivery: '+a.ship, '', 'Why: '+a.why, '', 'OK to name program publicly: '+(a.okToName?'yes':'no'));
+    return lines.join('\n');
+  }
+
+  let dbPromise = Promise.resolve(null);
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const err = $('formerr'); err.hidden = true;
+    const required = ['prog','city','cname','role','email','roster','waiting','why'];
+    const missing = required.filter(id => !($(id).value||'').trim());
+    if (!$('attest').checked) missing.push('attest');
+    if (missing.length){
+      err.textContent = 'Please fill in the required fields' + (missing.includes('attest') ? ' and check the attestation box.' : '.');
+      err.hidden = false; $(missing[0]).focus(); return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('email').value.trim())){
+      err.textContent = 'That email address doesn\'t look right.'; err.hidden = false; $('email').focus(); return;
+    }
+    const app = collect();
+    const btn = $('submitbtn'); btn.disabled = true; btn.textContent = 'Sending…';
+    const status = $('formstatus');
+    let saved = false;
+    try {
+      const db = await dbPromise;
+      if (db){ await db.collection('applications').add(app); saved = true; }
+    } catch(ex){ saved = false; }
+    btn.disabled = false; btn.textContent = 'Send application';
+    status.hidden = false; status.className = 'status ok';
+    const txt = toText(app);
+    if (saved){
+      status.innerHTML = '<b>Got it. Thanks, '+esc(app.contact.split(' ')[0])+'.</b><p>Your application for '+esc(app.program)+' is in. We review requests after each collection drive closes and will email you at '+esc(app.email)+' with a pickup date or tracking number. A copy of what you sent is below.</p>';
+    } else {
+      const mailto = 'mailto:'+EMAIL+'?subject='+encodeURIComponent('Gear application — '+app.program)+'&body='+encodeURIComponent(txt);
+      status.innerHTML = '<b>Last step: send it to us.</b><p>Your application is written up below. Tap the button to open it in your email app, or copy it and paste it into a message to <span class="addr">'+EMAIL+'</span>.</p><div><a class="btn primary" href="'+mailto+'" style="font-size:.9rem;padding:10px 16px">Open in email</a> <button class="copybtn" type="button" id="copyapp">Copy application</button> <button class="copybtn" type="button" id="copyemail2">Copy email</button></div>';
+    }
+    const pre = document.createElement('pre'); pre.textContent = txt; status.appendChild(pre);
+    const ca = $('copyapp'); if (ca) ca.addEventListener('click', ()=>copyText(txt, ca));
+    const ce = $('copyemail2'); if (ce) ce.addEventListener('click', ()=>copyText(EMAIL, ce));
+    status.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+  function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+})();
+</script>
+
+</body>
+</html>
